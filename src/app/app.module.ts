@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
-import { appReducers } from './store/reducers/app.reducer';
+import { appReducers } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { effectsArr } from './store/effects';
 // import { AppEffects } from './app.effects';

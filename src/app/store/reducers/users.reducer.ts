@@ -29,15 +29,18 @@ export function usersReducer(state = initialState, action: UsersActions): UsersS
 				...state,
 				loaded: true,
 				loading: false,
-				users: [...action.payload]
+				users: action.payload
 			};
 		case UsersActionTypes.SET_USERS_FAIL:
 			return {
 				...state,
 				loaded: false,
 				loading: false,
-				users: [],
-				error: [...action.payload]
+				error: {
+					status: action.payload.status,
+					message: action.payload.message,
+					url: action.payload.url
+				}
 			};
 		default:
 			return state;

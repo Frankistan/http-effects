@@ -11,6 +11,9 @@ import { UserService } from './services/user.service';
 import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { appReducers } from './store/reducers/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { effectsArr } from './store/effects';
+// import { AppEffects } from './app.effects';
 
 @NgModule({
 	declarations: [
@@ -25,6 +28,7 @@ import { appReducers } from './store/reducers/app.reducer';
 		// StoreModule.forRoot(reducers, { metaReducers }),
 		StoreModule.forRoot( appReducers ),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+		EffectsModule.forRoot(effectsArr),
 	],
 	providers: [
 		UserService

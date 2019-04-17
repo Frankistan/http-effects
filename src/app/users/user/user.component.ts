@@ -15,6 +15,8 @@ import { User } from 'src/app/models/user';
 export class UserComponent implements OnInit {
 	user$: Observable<User>;
 	id: any;
+	loading: boolean = true;
+	error: any;
 
 
 	constructor(
@@ -32,7 +34,8 @@ export class UserComponent implements OnInit {
 		this.user$ = this.store.select('user')
 			.pipe(
 				map( state => {
-					
+					this.loading = state.loading;
+					this.error = state.error;
 					return state.user
 				})
 			);

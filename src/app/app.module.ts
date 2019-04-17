@@ -8,12 +8,10 @@ import { StoreModule } from '@ngrx/store';
 import { UsersModule } from './users/users.module';
 import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
-import { reducers, metaReducers } from './reducers';
 import { environment } from '../environments/environment';
 import { appReducers } from './store/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { effectsArr } from './store/effects';
-// import { AppEffects } from './app.effects';
 
 @NgModule({
 	declarations: [
@@ -25,7 +23,6 @@ import { effectsArr } from './store/effects';
 		SharedModule,
 		UsersModule,
 		HttpClientModule,
-		// StoreModule.forRoot(reducers, { metaReducers }),
 		StoreModule.forRoot( appReducers ),
 		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
 		EffectsModule.forRoot(effectsArr),

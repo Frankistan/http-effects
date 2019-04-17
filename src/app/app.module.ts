@@ -1,27 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
 import { UsersModule } from './users/users.module';
+import { AppComponent } from './app.component';
 import { UserService } from './services/user.service';
+import { reducers, metaReducers } from './reducers';
+import { environment } from '../environments/environment';
+import { appReducers } from './store/reducers/app.reducer';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-	AppRoutingModule,
-	SharedModule,
-	UsersModule,
-	HttpClientModule
-  ],
-  providers: [
-	  UserService
-  ],
-  bootstrap: [AppComponent]
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		SharedModule,
+		UsersModule,
+		HttpClientModule,
+		// StoreModule.forRoot(reducers, { metaReducers }),
+		StoreModule.forRoot( appReducers ),
+		StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+	],
+	providers: [
+		UserService
+	],
+	bootstrap: [AppComponent]
 })
 export class AppModule { }

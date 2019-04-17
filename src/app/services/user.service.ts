@@ -14,7 +14,7 @@ export class UserService {
 		private http: HttpClient
 	) { }
 
-	list(){
+	list():Observable<User[]>{
 		return this.http
 			.get(`${environment.API_BASE_URL}/users?per_page=6`)
 			.pipe(

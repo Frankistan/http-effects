@@ -21,7 +21,8 @@ export function usersReducer(state = initialState, action: UsersActions): UsersS
 		case UsersActionTypes.SET_USERS:
 			return {
 				...state,
-				loading: true
+				loading: true,
+				error: null
 			};
 
 		case UsersActionTypes.SET_USERS_SUCCESS:

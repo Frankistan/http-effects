@@ -26,8 +26,12 @@ export class UserService {
 		
 	}
 	
-	read(){
-		
+	read(id:string){
+		return this.http
+			.get(`${environment.API_BASE_URL}/users/${id}`)
+			.pipe(
+				map(res => res['data'])
+			);
 	}
 
 	update(){}

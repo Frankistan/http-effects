@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { UserService } from 'src/app/services/user.service';
-import { UsersActionTypes, SetUsersSuccess, SetUsersFail } from '../actions';
+import { UserActionTypes, SetUserSuccess, SetUserFail } from '../actions';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 @Injectable({
 	providedIn: 'root'
 })
-export class UsersEffects {
+export class UserEffects {
 
 	constructor(
 		private actions$: Actions,
@@ -18,15 +18,15 @@ export class UsersEffects {
 	) { }
 
 	@Effect()
-	loadUsers$ = this.actions$
+	loadUser$ = this.actions$
 		.pipe(
-			ofType(UsersActionTypes.SET_USERS),
-			switchMap( () => {
-				return this.users.list()
+			ofType(UserActionTypes.SET_USER),
+			switchMap( action => {
+				return this.users.read(action['payload'])
 				.pipe(
-					map( (users:any) => new SetUsersSuccess(users)),
+					map( (user:any) => new SetUserSuccess(user)),
 					catchError( error => {
-						return of(new SetUsersFail(error));
+						return of(new SetUserFail(error));
 					})
 				);
 			}) 

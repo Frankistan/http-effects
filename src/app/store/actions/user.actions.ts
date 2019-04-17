@@ -2,15 +2,15 @@ import { Action } from "@ngrx/store";
 import { User } from 'src/app/models/user';
 
 export enum UserActionTypes {
-	SET_USER = "[Users] Set user",
-	SET_USER_FAIL = "[Users] Set user FAIL",
-	SET_USER_SUCCESS = "[Users] Set user SUCCESS",
+	SET_USER = "[User] Set user",
+	SET_USER_FAIL = "[User] Set user FAIL",
+	SET_USER_SUCCESS = "[User] Set user SUCCESS",
 }
 
 export class SetUser implements Action {
 	readonly type = UserActionTypes.SET_USER;
 
-	constructor(public payload: number) { }
+	constructor(public payload: string) { }
 }
 
 export class SetUserFail implements Action {
